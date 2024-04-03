@@ -1,0 +1,35 @@
+\begin{tikzpicture}
+
+    % Catenary curve
+    \def\C{0.25}
+    \def\offsetx{-4}
+    \def\ldomain{9}
+    \draw[smooth, domain=0:\ldomain, samples=100, very thick, orange] plot (\x, {cosh((\x + \offsetx)*\C)/\C});
+
+    % Points
+    \coordinate (P0) at ({-\offsetx}, {1/\C});
+    \coordinate (Pa1) at (0.0, {cosh((\offsetx)*\C)/\C});
+    \coordinate (Pa2) at (\ldomain, {cosh((\ldomain + \offsetx)*\C)/\C});
+    \node[above] at (Pa1) {$\mathbf{P}_{a_1}$};
+    \node[above] at (Pa2) {$\mathbf{P}_{a_2}$};
+
+    % Parameters
+    \coordinate (BL) at (0, {1/\C});
+    \coordinate (BR) at (\ldomain, {1/\C});
+    \coordinate (MR) at ($(Pa1) + (\ldomain, 0)$);
+    \coordinate (MM) at ($(Pa1) + (-\offsetx, 0)$);
+    \draw[densely dotted] (BL) -- (BR);
+    \draw[densely dotted] (P0) -- (MM);
+    \draw[latex-latex] (BL) node[above=20, xshift=0.3cm] {$H$} -- (Pa1);
+    \draw[latex-latex] (BR) node[above=30, xshift=1.cm] {$H + \Delta H$} -- (Pa2);
+    \draw[latex-latex] (Pa1) node[right=40, yshift=0.4cm] {$D$} -- (MM);
+    \draw[latex-latex] (MM) node[right=40, yshift=0.4cm] {$D + \Delta D$} -- (MR);
+
+    % Catenary frame
+    \def\unitl{1.}
+    \draw[green, thick] (P0) circle (5pt) node[below=5, black] {$\mathbf{P}_0$} node[above=0.2cm, xshift = -0.25cm] {$\mathbf{y}_0$};
+    \draw (P0) node[cross=4pt, green, thick] {};
+    \draw[-latex, thick, red] (P0) node[above=10, xshift=0.4cm, black] {$\mathcal{F}_0$} -- ($(P0) + (\unitl,0)$) node[midway, below] {$\mathbf{x}_0$};
+    \draw[-latex, thick, blue] (P0) -- ($(P0) + (0,\unitl)$) node[left] {$\mathbf{z}_0$};
+    
+\end{tikzpicture}

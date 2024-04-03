@@ -1,0 +1,55 @@
+\begin{tikzpicture}[scale=0.7, square/.style={regular polygon,regular polygon sides=4}]
+
+    % Cable
+    \def\ldomain{9}
+    \def\offsetx{-4}
+    \def\alphaval{-20}
+    \coordinate (Pa1) at (0,0);
+    \coordinate (Pa2) at ($(Pa1) + \ldomain*({cos(\alphaval)}, {sin(\alphaval)})$);
+    \draw[very thick, orange] (Pa1) -- (Pa2);
+
+    % Points
+    \coordinate (P0) at ($(Pa1) - \offsetx*({cos(\alphaval)}, {sin(\alphaval)})$);
+    \node[right] at (Pa2) {$\mathbf{P}_{a_2}$};
+
+    % Parameters
+    \coordinate (F) at (7,0);
+    \draw[densely dotted] (Pa1) -- (F);
+    % Angle
+    \node (a) at (Pa2) {};
+    \node (b) at (Pa1) {};
+    \node (c) at (F) {};
+    \pic[draw=black, "\textcolor{black}{$\alpha$}", latex-, angle radius = 4cm, angle eccentricity=1.05, very thick] {angle=a--b--c};
+
+    % ROV
+    \coordinate (C1) at ($(Pa1) + (-0.5,0.5)$);
+    \coordinate (C2) at ($(C1) - (0,2)$);
+    \coordinate (C3) at ($(C2) - (3,0)$);
+    \coordinate (C4) at ($(C3) + (0,2)$);
+    \coordinate (C0) at ($(C1) - (0,0.5)$);
+    \draw[ultra thick] (C1) -- (C2) -- (C3) -- (C4) -- cycle;
+    \draw[ultra thick] (Pa1) -- (C0);
+    \coordinate (C5) at ($(C3) + (0,0.5)$);
+    \coordinate (C6) at ($(C5) - (0.2,0.3)$);
+    \draw[ultra thick] (C5) rectangle (C6);
+
+    % Frames
+    \def\unitl{0.8}
+    % F0
+    \draw[-latex, thick, red, rotate=\alphaval] (P0) node[above=4, xshift=0.5cm, black] {$\mathcal{F}_0$} -- ($(P0) + (\unitl,0)$);
+    \draw[-latex, thick, green, rotate=\alphaval] (P0) -- ($(P0) + (0,\unitl)$);
+    \draw[blue, thick] (P0) circle (5pt) node[below=3, black] {$\mathbf{P}_{0}$};
+    \draw[blue, thick, fill=blue] (P0) circle (1.5pt);
+    % Fa1
+    \draw[-latex, thick, red] (Pa1) node[above=10, xshift=0.4cm, black] {$\mathcal{F}_{a_1}$} -- ($(Pa1) + (\unitl,0)$);
+    \draw[-latex, thick, green] (Pa1) -- ($(Pa1) + (0,\unitl)$);
+    \draw[blue, thick] (Pa1) circle (5pt) node[below=3, black] {$\mathbf{P}_{a_1}$};
+    \draw[blue, thick, fill=blue] (Pa1) circle (1.5pt);
+    % % Fr
+    \coordinate (Pr) at ($(C1) - (2.0,1.0)$);
+    \draw[blue, thick] (Pr) circle (5pt) node[above=3, black] {$\mathbf{P}_{r}$};
+    \draw (Pr) node[cross=4pt, blue, thick] {};
+    \draw[-latex, thick, red] (Pr) node[below=5, xshift=0.4cm, black] {$\mathcal{F}_{r}$} -- ($(Pr) + (\unitl,0)$);
+    \draw[-latex, thick, green] (Pr) -- ($(Pr) - (0,\unitl)$);
+    
+\end{tikzpicture}

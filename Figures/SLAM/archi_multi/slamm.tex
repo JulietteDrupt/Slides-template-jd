@@ -1,0 +1,22 @@
+\begin{tikzpicture}
+    \coordinate (S) at (0.25,0.25);
+    \coordinate (A1) at (-1.,-1.);
+    \coordinate (A2) at (0.8,-1.2);
+    \coordinate (A3) at (1.5,-0.1);
+    \def\r{.2}
+
+    \filldraw[fill=red, draw=black, thick] ($(S) - (0.25,0.25)$) rectangle ($(S) + (0.25,0.25)$) node[above, xshift=-1cm, yshift=-0.5cm, align=left] {Server: T, LM, LC, iMM, \\R (multi-map)};
+    \filldraw[fill=gray, draw=black, thick] (A1) circle (6pt);
+    \filldraw[fill=gray, draw=black, thick] (A2) circle (6pt) node[below, xshift=-0.3cm, yshift=-0.2cm] {Agents};
+    \filldraw[fill=gray, draw=black, thick] (A3) circle (6pt);
+
+    \draw[->, very thick, -latex] ($(A1) + (80:\r)$) -- ($(S) + (-0.25,0.15)$);
+    \draw[->, very thick, dashed, -latex] ($(S) + (-0.25,-0.25)$) -- ($(A1) + (0:\r)$);
+
+    \draw[->, very thick, -latex] ($(A2) + (130:\r)$) -- ($(S) + (0.,-0.25)$);
+    \draw[->, very thick, dashed, -latex] ($(S) + (0.25,-0.25)$) -- ($(A2) + (50:\r)$);
+
+    \draw[->, very thick, -latex] ($(A3) + (200:\r)$) -- ($(S) + (0.25,0.)$);
+    \draw[->, very thick, dashed, -latex] ($(S) + (0.25,0.25)$) -- ($(A3) + (120:\r)$);
+
+\end{tikzpicture}

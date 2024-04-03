@@ -1,0 +1,130 @@
+%%%%% LAS SIGUIENTES OPCIONES SE PUEDEN MODIFICAR DEPENDIENDO DEL FORMATO DESEADO PARA TU DIAPOSITIVA (Comentar o descomentar las líneas correspondientes)
+
+
+%%%%% Recuerda que usando CTRL + '/' puedes comentar y descomentar rápidamente una línea en LaTeX
+
+%%%%%%%%%%%%%%%%%%%% FORMATO DE ASPECTO %%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% ¡IMPORTANTE, ELIGE UN FORMATO DE ASPECTO ANTES DE EMPEZAR TUS DIAPOSITIVAS!
+%%%%%%%%%% CAMBIAR EL FORMATO DE ASPECTO UNA VEZ HECHAS LAS DIAPOSITIVAS PUEDE RESULTAR EN QUE TABLAS O ECUACIONES MUY LARGAS NO QUEPAN EN UN SOLO FRAME
+
+% \documentclass[aspectratio = 43]{beamer}  % Formato de aspecto para cañón
+\documentclass[aspectratio=169]{beamer} % Formato de aspecto para monitor HD
+
+%%%%%%%%%%%%%%%%%%%% COLORES DE LA DIAPOSITIVA %%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Puedes añadir tus propios colores, sustituye las siguientes líneas por el color deseado en formato RGB
+
+% % Color verde
+% \definecolor{beamer_color}{RGB}{28, 148, 40}
+% \definecolor{backframe_color}{RGB}{224, 255, 227}
+%
+% Color violeta
+% \definecolor{beamer_color}{rgb}{0.6, 0.4, 0.8}
+
+% % Define custom colors
+% \definecolor{blue1}{RGB}{0,0,102}
+% \definecolor{blue2}{RGB}{1,87,155}
+% \definecolor{green1}{RGB}{0,128,0}
+% \definecolor{purple1}{RGB}{102,0,102}
+
+% % Color azul
+% \definecolor{beamer_color}{RGB}{1,87,155}
+% \definecolor{backframe_color}{RGB}{225, 245, 254}
+
+% % Color naranja
+% \definecolor{beamer_color}{RGB}{230, 81, 0}
+% \definecolor{backframe_color}{RGB}{255, 243, 224}
+
+% Color azul 2
+\definecolor{beamer_color}{RGB}{0, 160, 170}
+\definecolor{beamer_color_2}{RGB}{0, 96, 100}
+\definecolor{beamer_color_3}{RGB}{0, 131, 143}
+\definecolor{beamer_color_4}{RGB}{0, 77, 64}
+\definecolor{backframe_color}{RGB}{229, 242, 245}
+
+
+%%%%%%%%%%%%%%%%%%%% FUENTE DEL TEXTO Y LAS ECUACIONES %%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Opción 1. Fuente sans serif tanto en texto como ecuaciones: Deja como comentario todo en las opciones 2 y 3.
+% Opción 2. Fuente sans serif en el texto. Fuente serif en las ecuaciones: Descomenta la siguiente línea de texto.
+\usefonttheme{professionalfonts}
+% Opción 3. Fuente serif tanto en texto como ecuaciones: Descomenta las siguientes líneas de texto.
+% \usefonttheme{serif}
+% \usepackage[charter, cal = cmcal]{mathdesign}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\input{setup.tex} % Si necesitas paquetes adicionales, añadelos al comienzo del documento setup.tex
+
+
+\title[\textbf{Title}]{\textbf{Title}}
+\subtitle{My-subtitle}
+\author[Juliette Drupt]{Juliette Drupt}
+\date{\today}
+
+\usepgfplotslibrary{external} 
+\tikzexternalize[prefix=cache/]
+
+\begin{document}
+
+\captionsetup[figure]{labelformat={default},labelsep=period,name={Fig.},font={it,footnotesize}}
+\captionsetup[table]{labelformat={default},labelsep=period,name={Tab.},font={it,footnotesize}}
+
+\newcommand{\MAM}{\texorpdfstring{MAM$^3$SLAM}}
+\newcommand{\tabitem}{~~\usebeamertemplate{itemize item}~~} % table item symbol
+\newcommand{\tabitemenum}{\usebeamertemplate{enumerate item}~~~~\addtocounter{enumi}{1}} % table item symbol
+
+\setlength{\fboxsep}{1pt} % margin for colorbox highlighting
+
+\begin{frame}
+    \maketitle
+\end{frame}
+
+\begin{frame}{Example}
+    \cite{Campos2021}
+\end{frame}
+
+% Video integration example
+% \begin{frame}{Cable-based localization (2/2)}
+%     \begin{figure}[htb]
+%         \centering
+%         % \includegraphics[width=\textwidth]{Figures/Cable/matheus_vs_static.png}
+%         \includemedia[width=\textwidth,
+%         height=0.56\textwidth,
+%         activate=pageopen,
+%         addresource=Videos/Matheus_VS_sample_defence_3.mp4,
+%         flashvars={source=Videos/Matheus_VS_sample_defence_3.mp4&autoPlay=true&loop=true},
+%         passcontext]{}{VPlayer.swf}
+%         \caption{Catenary-based \href{run:Videos/Matheus_VS_sample_defence_3.mp4}{visual servoing}~\cite{Laranjeira2020}}
+%     \end{figure}
+% \end{frame}
+
+% % Animation example
+% \begin{frame}
+%     \frametitle{Table Animation}
+%     \begin{center}
+%     \begin{tabular}{ |c|c|c| }
+%     \hline
+%     \textbf{S.No.} & \textbf{Reading 1} & \textbf{Reading 2} \\
+%     \hline \hline
+%     \uncover<2->{1} & \uncover<2->{3003} & \uncover<2->{3006} \\
+%     \uncover<3->{2} & \uncover<3->{3005}& \uncover<3->{3004} \\  
+%     \uncover<4->{3} & \uncover<4->{3002} &\uncover<5-> {3008} \\  
+%     \hline
+%     \end{tabular}
+%     \end{center}
+% \end{frame}
+
+
+
+\setcounter{section}{-1}
+\section*{References}
+
+\begin{frame}[allowframebreaks]{References}
+\bibliographystyle{ieeetr}
+\bibliography{references}
+\end{frame}
+
+\end{document}

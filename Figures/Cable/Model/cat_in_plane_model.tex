@@ -1,0 +1,47 @@
+\tdplotsetmaincoords{90}{0}
+\begin{tikzpicture}[tdplot_main_coords]
+
+    \tdplotsetrotatedcoords{20}{0}{0}
+
+    % Parameters
+    \def\C{0.25}
+    \def\offsetx{-4}
+    \def\ldomain{9}
+    \def\unitl{3.}
+    \def\gammaval{20}
+
+    \filldraw[draw=blue!50, fill=blue!10, tdplot_rotated_coords] (0, 0, {cosh((\ldomain + \offsetx)*\C)/\C}) -- (\ldomain, 0, {cosh((\ldomain + \offsetx)*\C)/\C}) -- (\ldomain, 0, {1/\C}) node[below, xshift = 0.2cm] {$\mathcal{P}$} -- (0, 0, {1/\C}) -- cycle;
+    
+    % Catenary curve
+    % \draw[smooth, domain=0:\ldomain, samples=100, very thick, blue] plot (\x, 0, {cosh((\x + \offsetx)*\C)/\C});
+    \draw[smooth, domain=0:\ldomain, samples=100, very thick, orange, tdplot_rotated_coords] plot (\x, 0, {cosh((\x + \offsetx)*\C)/\C});
+
+    % Fp
+    \draw[-latex, thick, red, tdplot_rotated_coords] ({-\offsetx}, 0, {1/\C}) -- ($({-\offsetx}, 0, {1/\C}) + (\unitl, 0, 0)$) node[above, anchor=west] {$\mathbf{x}_p = \mathbf{x}_0$};
+    \draw[-latex, thick, green, tdplot_rotated_coords] ({-\offsetx}, 0, {1/\C}) -- ($({-\offsetx}, 0, {1/\C}) + (0,-\unitl,0)$) node[above] {$\mathbf{y}_p$};
+    \draw[-latex, thick, blue, tdplot_rotated_coords] ({-\offsetx}, 0, {1/\C}) node[above=25, xshift=0.8cm, black] {$\mathcal{F}_p$} -- ($({-\offsetx}, 0, {1/\C}) + (0, 0,\unitl)$) node[right] {$\mathbf{z}_p$};
+
+    % F0
+    \draw[-latex, thick, red, dashed, tdplot_rotated_coords] ({-\offsetx}, 0, {1/\C}) -- ($({-\offsetx}, 0, {1/\C}) + (\unitl, 0, 0)$);
+    \draw[-latex, thick, green, dashed, tdplot_rotated_coords] ({-\offsetx}, 0, {1/\C}) -- ($({-\offsetx}, 0, {1/\C}) + (0,{-\unitl*cos(\gammaval)},{\unitl*sin(\gammaval)})$) node[above] {$\mathbf{y}_0$};
+    \draw[-latex, thick, blue, dashed, tdplot_rotated_coords] ({-\offsetx}, 0, {1/\C}) node[above=30, xshift=-0.5cm, black] {$\mathcal{F}_0$} -- ($({-\offsetx}, 0, {1/\C}) + (0, {\unitl*sin(\gammaval)},{\unitl*cos(\gammaval)})$) node[left] {$\mathbf{z}_0$};
+
+    \tdplotsetrotatedcoords{20}{0}{0}
+
+    % P0
+    \filldraw[tdplot_rotated_coords] ({-\offsetx}, 0, {1/\C}) circle (1pt);
+    \node[below,tdplot_rotated_coords] at ({-\offsetx}, 0, {1/\C}) {$\mathbf{P}_{0}$};
+    % Pa1
+    \filldraw[tdplot_rotated_coords] (0.0, 0, {cosh((\offsetx)*\C)/\C}) circle (1pt);
+    \node[above,tdplot_rotated_coords] at (0.0, 0, {cosh((\offsetx)*\C)/\C}) {$\mathbf{P}_{a_1}$};
+    % Pa2
+    \filldraw[tdplot_rotated_coords] (\ldomain, 0, {cosh((\ldomain + \offsetx)*\C)/\C}) circle (1pt);
+    \node[above,tdplot_rotated_coords] at (\ldomain, 0, {cosh((\ldomain + \offsetx)*\C)/\C}) {$\mathbf{P}_{a_2}$};
+
+    % Angle
+    \node[tdplot_rotated_coords] (a) at ($({-\offsetx}, 0, {1/\C}) + (0, 0,\unitl)$) {};
+    \node[tdplot_rotated_coords] (b) at ({-\offsetx}, 0, {1/\C}) {};
+    \node[tdplot_rotated_coords] (c) at ($({-\offsetx}, 0, {1/\C}) + (0, {\unitl*sin(\gammaval)},{\unitl*cos(\gammaval)})$) {};
+    \pic[draw=magenta, <-, "\textcolor{magenta}{$\gamma$}", angle radius = 2.5cm, angle eccentricity=1.15, very thick] {angle=a--b--c};
+
+\end{tikzpicture}

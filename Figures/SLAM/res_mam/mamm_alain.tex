@@ -1,0 +1,38 @@
+\begin{tikzpicture}
+ 
+    \begin{axis}[view = {70}{25}, 
+        xlabel={$x$ [m]},
+        ylabel={$y$ [m]},
+        zlabel={$z$ [m]},
+        xmin=-2.5, xmax=2.2,
+        ymin=-2.2, ymax=3,
+        zmin = -2.5, zmax = 2.5,
+        xtick = {-4,-3,...,14},
+        ytick = {-4,-3,...,12},
+        ztick = {-6,-5,...,6},
+        axis equal image,
+        grid,
+        width=1.7\textwidth,
+        legend style={at={(0.5,-0.175)}, anchor=north},
+        unbounded coords=jump
+        ]
+
+    \addplot3[line width=0.5pt,densely dotted,color=blue!50, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/alain/a0_alain_gt.txt};
+
+    \addplot3[line width=0.5pt,densely dotted,color=orange, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/alain/a1_alain_gt.txt};
+
+    \addplot3[line width=0.5pt,solid,color=blue, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/alain/a0_alain_mam_M0.txt};
+    \input{Figures/SLAM/res_mam/data/alain/cam_frames_a0.tex}
+
+    \addplot3[line width=0.5pt,solid,color=red, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/alain/a1_alain_mam_M0.txt};
+    \input{Figures/SLAM/res_mam/data/alain/cam_frames_a1.tex}
+
+    % \legend{Agent~0 (ref), Agent~1 (ref), Agent~0 MAM$^3$SLAM --- Map~0, Agent~1 MAM$^3$SLAM --- Map~0}
+     
+    \end{axis}
+     
+\end{tikzpicture}

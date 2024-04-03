@@ -1,0 +1,10 @@
+\begin{tikzpicture}
+
+    \draw[->, very thick, -latex] (0,0) -- (0.5,0) node[right] {Communication};
+    \draw[->, very thick, -latex, dashed] (0,-0.6) -- (0.5,-0.6) node[right] {Optional communication};
+    \filldraw[fill=red, draw=black, thick] (6.,0.125) rectangle (6.5,-0.125) node[right, yshift=0.09cm] {Computations};
+    \filldraw[fill=gray, draw=black, thick] (6.,-0.475) rectangle (6.5,-0.725) node[right, yshift=0.09cm] {No computations, only measurements};
+
+    \draw[black, thick] (-0.5,0.5) rectangle (13.5,-1.);
+
+\end{tikzpicture}

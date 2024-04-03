@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+    \coordinate (A1) at (-1.,-1.);
+    \coordinate (A2) at (0.8,-1.2);
+    \coordinate (A3) at (1.5,-0.1);
+    \def\r{.2}
+
+    \filldraw[fill=red, draw=black, thick] (A1) circle (6pt);
+    \filldraw[fill=red, draw=black, thick] (A2) circle (6pt) node[below, xshift=-0.3cm, yshift=-0.2cm] {Agents};
+    \filldraw[fill=red, draw=black, thick] (A3) circle (6pt);
+
+    \draw[->, very thick, -latex, dashed] ($(A1) + (-90:\r)$) -- ($(A2) + (220:\r)$);
+    \draw[->, very thick, -latex, dashed] ($(A2) + (140:\r)$) -- ($(A1) + (0:\r)$);
+
+    \draw[->, very thick, -latex, dashed] ($(A2) + (0:\r)$) -- ($(A3) + (-40:\r)$);
+    \draw[->, very thick, -latex, dashed] ($(A3) + (-120:\r)$) -- ($(A2) + (80:\r)$);
+
+    \draw[->, very thick, -latex, dashed] ($(A1) + (20:\r)$) -- ($(A3) + (200:\r)$);
+    \draw[->, very thick, -latex, dashed] ($(A3) + (120:\r)$) -- ($(A1) + (100:\r)$);
+
+\end{tikzpicture}

@@ -1,0 +1,57 @@
+\begin{tikzpicture}[square/.style={regular polygon,regular polygon sides=4}]
+    
+    \coordinate (O) at (0,0);
+    \coordinate (A) at (0,0);
+    \coordinate (B) at ($(A) + (2,-2)$);
+    \coordinate (R) at ($(B) + (1,0.7)$);
+
+    % Cable + ROV + ballast
+    \draw[very thick, orange] (O) -- (A) -- (B) -- (R);
+    \draw[thick, black] (R) rectangle ($(R) + (0.5,0.3)$);
+    \draw[thick, black] ($(B) - (0.1,0)$) rectangle ($(B) + (0.1,-0.2)$);
+
+    % Points
+    \node[above=3] at (O) {$\mathbf{O}$};
+    \node[below=0.2cm] at (B) {$\mathbf{B}$};
+    \node[right, yshift=-0.2cm] at (R) {$\mathbf{E}$};
+
+    % IMUs
+    \coordinate (Pi1) at ($(A) + (0.7,-0.7)$);
+    \coordinate (Ci1) at ($(Pi1) - (0,0.35)$);
+    \node at (Ci1) [square,draw, thick, blue!50, fill=blue!20, rotate=45, minimum size=0.7cm] {};
+    \coordinate (Pi2) at ($(B) + (0.75,0.525)$);
+    \coordinate (Ci2) at ($(Pi2) - (0.07,0.35)$);
+    \node at (Ci2) [square,draw, thick, blue!50, fill=blue!20, rotate=35, minimum size=0.7cm] {};
+
+    % % Angles
+    % \coordinate (BL) at ($(O) - (0,1.5)$);
+    % \draw[densely dotted] (O) -- (BL);
+    % \node (a) at (BL) {};
+    % \node (b) at (O) {};
+    % \node (c) at (B) {};
+    % \pic[draw=black, "\textcolor{black}{$\alpha$}", angle radius = 1cm, angle eccentricity=1.3, very thick] {angle=a--b--c};
+    % \coordinate (BR) at ($(R) - (0,1.5)$);
+    % \draw[densely dotted] (R) -- (BR);
+    % \node (a) at (B) {};
+    % \node (b) at (R) {};
+    % \node (c) at (BR) {};
+    % \pic[draw=black, "\textcolor{black}{$\beta$}", angle radius = 1cm, angle eccentricity=1.3, very thick] {angle=a--b--c};
+
+    % FO
+    \def\unitl{0.8}
+    \draw[-latex, thick, red] (O) node[below=5, xshift=-0.4cm, black] {$\mathcal{F}_{\mathbf{O}}$} -- ($(O) + (\unitl,0)$);
+    \draw[-latex, thick, blue] (O) -- ($(O) - (0,\unitl)$);
+    \draw[green, thick] (O) circle (5pt);
+    \draw[green, thick, fill=green] (O) circle (1.5pt);
+    % Fb1
+    \draw[-latex, thick, red, rotate=-45] (Pi1) node[above, xshift=0.8cm, black] {$\mathcal{F}_{b_1}$} -- ($(Pi1) + (\unitl,0)$);
+    \draw[-latex, thick, green, rotate=-45] (Pi1) -- ($(Pi1) + (0,\unitl)$);
+    \draw[blue, thick] (Pi1) circle (5pt) node[right, xshift=0.2cm, black] {$\mathbf{P}_{i_1}$};
+    \draw[blue, thick, fill=blue] (Pi1) circle (1.5pt);
+    % Fb2
+    \draw[-latex, thick, green, rotate=-55] (Pi2) node[above=0.4cm, xshift=0.cm, black] {$\mathcal{F}_{b_2}$} -- ($(Pi2) - (\unitl,0)$);
+    \draw[-latex, thick, red, rotate=-55] (Pi2) -- ($(Pi2) - (0,\unitl)$);
+    \draw[blue, thick] (Pi2) circle (5pt) node[left=0.2cm, yshift=0.2cm, black] {$\mathbf{P}_{i_2}$};
+    \draw (Pi2) node[cross=4pt, blue, thick, rotate=-55] {};
+
+\end{tikzpicture}

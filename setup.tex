@@ -1,0 +1,126 @@
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{multirow}
+\usepackage{colortbl} % color table cells
+\usepackage{graphicx}
+\usepackage{lipsum}
+
+\usepackage{tikz} % Figures
+\usepackage{tikz-3dplot}
+\usetikzlibrary{calc,patterns,angles,quotes,fit,decorations.markings, shadings}
+\usetikzlibrary{shapes.misc,shapes.geometric}
+\tikzset{cross/.style={cross out, draw=black, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},
+%default radius will be 1pt. 
+cross/.default={1pt}}
+\usepackage{pgfplots}
+
+\tikzset{
+	double arrow/.style args={#1 colored by #2 and #3}{
+		-stealth,line width=#1,#2, % first arrow
+		postaction={draw,-stealth,#3,line width=(#1)/3,
+					shorten <=(#1)/3,shorten >=2*(#1)/3}, % second arrow
+	}
+	}
+
+\usepackage{subcaption}
+\usepackage[charter]{mathdesign}
+\usepackage{tcolorbox}
+\usepackage{caption}
+\usepackage{hyperref}
+
+\usepackage{etoolbox}
+
+\usepackage{physics} % allows bold math symbols with vb{}
+\usepackage{adjustbox}
+\usepackage[super]{nth}
+
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\usepackage{setspace}
+\usepackage{animate,media9,movie15}
+
+\makeatletter
+\pretocmd{\section}{\addtocontents{toc}{\protect\addvspace{-8\p@}}}{}{}
+% \pretocmd{\subsection}{\addtocontents{toc}{\protect\addvspace{5\p@}}}{}{}
+\makeatother
+
+% \usetheme{Madrid}
+\usetheme{Frankfurt}
+
+\tcbset{colback=backframe_color, colframe=beamer_color}
+
+\setbeamertemplate{frametitle}{
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1cm, sep=0.25cm]{frametitle}
+    \tikzset{external/export next=false}
+    % \begin{tikzpicture}[remember picture,overlay]
+    %   % \node[anchor=north east] at ($(current page.north east) + (-0.1,-0.1)$) {\includegraphics[height=0.5cm]{Figures/SpecialFigures/logo_univ_toulon_blanc.png}};
+    %   % \node[anchor=north east] at (current page.north east) {\includegraphics[height=0.75cm]{Figures/SpecialFigures/waves_tln.png}};
+    %   \node[anchor=north east] at ($(current page.north east) + (0,-0.55)$) {\includegraphics[height=0.75cm]{Figures/SpecialFigures/waves_tln.png}};
+
+    % \end{tikzpicture}
+    \usebeamerfont{frametitle}\bfseries\insertframetitle
+  \end{beamercolorbox}
+}
+
+\setbeamertemplate{bibliography item}{[\theenumiv]}
+\setbeamertemplate{caption}[numbered]
+\setbeamercolor{frametitle}{bg=beamer_color,fg=white}
+\setbeamercolor{author in head/foot}{bg=beamer_color_2,fg=white}
+\setbeamercolor{title in head/foot}{bg=beamer_color_3,fg=white}
+\setbeamercolor{date in head/foot}{bg=beamer_color,fg=white}
+\setbeamercolor{titlelike}{parent=structure,bg=beamer_color,fg=white}
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+\setbeamerfont{section in toc}{series=\bfseries}
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{caption name}{fg=beamer_color_2}
+\setbeamerfont{caption name}{series=\bfseries}
+\setbeamerfont{caption}{size=\small}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry title}{fg=black} 
+\setbeamercolor{item}{fg=beamer_color_2} 
+\setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection\par}
+\setbeamertemplate{subsection in toc}{\hspace{1.5em}\inserttocsectionnumber.\inserttocsubsectionnumber~\inserttocsubsection\par}
+\setbeamerfont{subsection in toc}{size=\scriptsize}
+% \setbeamercolor{structure}{fg=beamer_color_2}
+\setbeamercolor{section in head/foot}{bg=beamer_color_2, fg=white}
+\setbeamertemplate{footline}[frame number]
+
+
+\renewcommand{\maketitle}{
+
+\titlepage
+
+}
+
+% \AtBeginSection[ ]
+% {
+% \begin{frame}{Contenido de la presentación}
+% \tableofcontents[currentsection,subsectionstyle = shaded]
+% \end{frame}
+% }
+
+% \AtBeginSubsection[ ]
+% {
+% \begin{frame}{Contenido de la presentación}
+% \tableofcontents[currentsection,currentsubsection]
+% \end{frame}
+% }
+
+% \setbeamertemplate{section page}{
+%     \begingroup
+%         \centering
+%         \begin{beamercolorbox}[sep=12pt,center,colsep=-4bp,rounded=true,shadow=true]{section title}
+%             \usebeamerfont{section title}\insertsection\par
+%         \end{beamercolorbox}
+%     \endgroup
+% }
+
+% \AtBeginSection{\frame{\sectionpage}}

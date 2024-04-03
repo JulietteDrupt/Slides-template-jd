@@ -1,0 +1,118 @@
+\begin{tikzpicture}[square/.style={regular polygon,regular polygon sides=4}]
+
+    % Catenary curve
+    \def\C{0.25}
+    \def\offsetx{-4}
+    \def\ldomain{9}
+    \draw[smooth, domain=0:\ldomain, samples=100, very thick, orange] plot (\x, {cosh((\x + \offsetx)*\C)/\C});
+
+    % Points
+    \coordinate (P0) at ({-\offsetx}, {1/\C});
+    \coordinate (Pa1) at (0.0, {cosh((\offsetx)*\C)/\C});
+    \coordinate (Pa2) at (\ldomain, {cosh((\ldomain + \offsetx)*\C)/\C});
+    % \filldraw (Pa2) circle (1pt);
+    % \node[above] at (Pa1) {$\mathbf{P}_{a_1}$};
+    \node[above] at (Pa2) {$\mathbf{P}_{a_2}$};
+
+    % Parameters
+    \coordinate (BL) at (0, {1/\C});
+    \coordinate (BR) at (\ldomain, {1/\C});
+    \coordinate (MR) at ($(Pa1) + (\ldomain, 0)$);
+    \coordinate (MM) at ($(Pa1) + (-\offsetx, 0)$);
+    \coordinate (BBL) at ($(BL) - (0,1.0)$);
+    \coordinate (BBR) at ($(BR) - (0,1.0)$);
+    \coordinate (BMM) at ($(P0) - (0,1.0)$);
+    \coordinate (TRR) at ($(Pa2) + (0.5,0)$);
+    \coordinate (MRR) at ($(MR) + (0.5,0)$);
+    \coordinate (BRR) at ($(BR) + (0.5,0)$);
+    \draw[densely dotted] (BL) -- (BRR);
+    \draw[densely dotted] (Pa1) -- (BBL);
+    \draw[densely dotted] (Pa2) -- (BBR);
+    \draw[densely dotted] (Pa1) -- (MRR);
+    \draw[densely dotted] (P0) -- (BMM);
+    \draw[densely dotted] (Pa2) -- (TRR);
+    \draw[latex-latex] (BRR) node[above=20, xshift=0.3cm] {$H$} -- (MRR);
+    \draw[latex-latex] (MRR) node[above=10, xshift=0.5cm] {$\Delta H$} -- (TRR);
+    \draw[latex-latex] (BBL) node[right=40, yshift=0.3cm] {$D$} -- (BMM);
+    \draw[latex-latex] (BMM) node[right=40, yshift=0.3cm] {$D + \Delta D$} -- (BBR);
+
+    % ROV
+    % \draw (60:1) {[rounded corners] -- (0:1) -- (0,0)} -- cycle ;
+    \coordinate (C1) at ($(Pa1) - (0.5,0.5)$);
+    \coordinate (C2) at ($(C1) - (0,2)$);
+    \coordinate (C3) at ($(C2) - (3,0)$);
+    \coordinate (C4) at ($(C3) + (0,2)$);
+    \draw[ultra thick] (Pa1) -- (C1) {[rounded corners] -- (C2) -- (C3)} -- (C4) -- (C1);
+    \coordinate (C5) at ($(C3) + (0,0.5)$);
+    \coordinate (C6) at ($(C5) - (0.2,0.3)$);
+    \draw[ultra thick] (C5) rectangle (C6);
+
+    % Camera
+    \coordinate (Pc) at ($(C1) - (0.3,1.7)$);
+    \draw[red!50, densely dotted, ultra thick] (Pc) -- ($(Pc) + (4,2)$);
+    \draw[red!50, densely dotted, ultra thick] (Pc) -- ($(Pc) + (4,-2)$);
+    % IMUs
+    \coordinate (Ci1) at ($(1.0, {cosh((1.0 + \offsetx)*\C)/\C}) - (0.25,0.25)$);
+    \node at (Ci1) [square,draw, thick, blue!50, fill=blue!20, rotate=-40, minimum size=1.0cm] {};
+    \coordinate (Ci2) at ($(8.0, {cosh((8.0 + \offsetx)*\C)/\C}) - (-0.25,0.25)$);
+    \node at (Ci2) [square,draw, thick, blue!50, fill=blue!20, rotate=50, minimum size=1.0cm] {};
+
+    % Frames
+    \def\unitl{0.8}
+    % F0
+    \draw[green, thick] (P0) circle (5pt) node[below=3, xshift=-0.3cm, black] {$\mathbf{P}_0$};
+    \draw (P0) node[cross=4pt, green, thick] {};
+    \draw[-latex, thick, red] (P0) node[above=10, xshift=0.4cm, black] {$\mathcal{F}_0$} -- ($(P0) + (\unitl,0)$);
+    \draw[-latex, thick, blue] (P0) -- ($(P0) + (0,\unitl)$);
+    % Fa1
+    \draw[green, thick] (Pa1) circle (5pt) node[above=5, xshift=-0.4cm, black] {$\mathbf{P}_{a_1}$};
+    \draw (Pa1) node[cross=4pt, green, thick] {};
+    \draw[-latex, thick, red] (Pa1) node[above=10, xshift=0.4cm, black] {$\mathcal{F}_{a_1}$} -- ($(Pa1) + (\unitl,0)$);
+    \draw[-latex, thick, blue] (Pa1) -- ($(Pa1) + (0,\unitl)$);
+    % Fir
+    \coordinate (Pir) at ($(C1) - (0.9,0.3)$);
+    \draw[green, thick] (Pir) circle (5pt) node[below=3, black] {$\mathbf{P}_{i_r}$};
+    \draw (Pir) node[cross=4pt, green, thick] {};
+    \draw[-latex, thick, red] (Pir) node[above=10, xshift=0.4cm, black] {$\mathcal{F}_{i_r}$} -- ($(Pir) + (\unitl,0)$);
+    \draw[-latex, thick, blue] (Pir) -- ($(Pir) + (0,\unitl)$);
+    % Fd
+    \coordinate (Pd) at ($(C5) - (0.1,0.15)$);
+    \draw[green, thick] (Pd) circle (5pt) node[below=4, black] {$\mathbf{P}_{d}$};
+    \draw (Pd) node[cross=4pt, green, thick] {};
+    \draw[-latex, thick, red] (Pd) node[above=6, xshift=-0.4cm, black] {$\mathcal{F}_{d}$} -- ($(Pd) + (\unitl,0)$);
+    \draw[-latex, thick, blue] (Pd) -- ($(Pd) + (0,\unitl)$);
+    % Fr
+    \coordinate (Pr) at ($(C1) - (2.0,1.7)$);
+    \draw[-latex, thick, red] (Pr) node[below=10, xshift=0.4cm, black] {$\mathcal{F}_{r}$} -- ($(Pr) + (\unitl,0)$);
+    \draw[-latex, thick, blue] (Pr) -- ($(Pr) - (0,\unitl)$);
+    \draw[green, thick] (Pr) circle (5pt) node[above=3, black] {$\mathbf{P}_{r}$};
+    \draw[green, thick, fill=green] (Pr) circle (1.5pt);
+    % Fb1
+    \coordinate (P1) at ($(Ci1) + (-0.05,0.5)$);
+    \draw[-latex, thick, red, rotate=-40] (P1) node[above, xshift=0.8cm, black] {$\mathcal{F}_{b_1}$} -- ($(P1) + (\unitl,0)$);
+    \draw[-latex, thick, green, rotate=-40] (P1) -- ($(P1) + (0,\unitl)$);
+    \draw[blue, thick] (P1) circle (5pt) node[above=3, xshift=0.0cm, black] {$\mathbf{P}_{i_1}$};
+    \draw[blue, thick, fill=blue] (P1) circle (1.5pt);
+    % Fi1
+    \draw[-latex, thick, green, rotate=-40] (Ci1) node[below=11, xshift=0.2cm, black] {$\mathcal{F}_{i_1}$} -- ($(Ci1) + (\unitl,0)$);
+    \draw[-latex, thick, red, rotate=-40] (Ci1) -- ($(Ci1) - (0,\unitl)$);
+    \draw[blue, thick] (Ci1) circle (5pt);
+    \draw[blue, thick, fill=blue] (Ci1) circle (1.5pt);
+    % Fb2
+    \coordinate (P2) at ($(Ci2) + (-0.05,0.5)$);
+    \draw[-latex, thick, green, rotate=-40] (P2) node[above=-0.2cm, xshift=-0.8cm, black] {$\mathcal{F}_{b_2}$} -- ($(P2) - (\unitl,0)$);
+    \draw[-latex, thick, red, rotate=-40] (P2) -- ($(P2) - (0,\unitl)$);
+    \draw[blue, thick] (P2) circle (5pt) node[above=3, black] {$\mathbf{P}_{i_2}$};
+    \draw (P2) node[cross=4pt, blue, thick, rotate=-40] {};
+    % Fi2
+    \draw[-latex, thick, red, rotate=-40] (Ci2) node[below=0.5cm, xshift=0.4cm, black] {$\mathcal{F}_{i_2}$} -- ($(Ci2) + (\unitl,0)$);
+    \draw[-latex, thick, green, rotate=-40] (Ci2) -- ($(Ci2) - (0,\unitl)$);
+    \draw[blue, thick] (Ci2) circle (5pt);
+    \draw (Ci2) node[cross=4pt, blue, thick, rotate=-40] {};
+    % Fc
+    \draw[-latex, thick, blue] (Pc) node[below=11, xshift=0.4cm, black] {$\mathcal{F}_{c}$} -- ($(Pc) + (\unitl,0)$);
+    \draw[-latex, thick, green] (Pc) -- ($(Pc) - (0,\unitl)$);
+    \draw[red, thick] (Pc) circle (5pt) node[above=3, black] {$\mathbf{P}_{c}$};
+    \draw[red, thick, fill=red] (Pc) circle (1.5pt);
+    
+\end{tikzpicture}

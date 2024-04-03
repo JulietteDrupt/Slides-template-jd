@@ -1,0 +1,17 @@
+\begin{tikzpicture}[scale=0.7]
+    % Boat
+    \filldraw[fill=white, draw=black, thick] (0,0) -- (.5,-.5) -- (3.,-.5) -- (3.25,-0.15) -- (1.75,-0.15) -- (0,0);
+    \filldraw[fill=white, draw=black, thick] (0.583,-0.05) -- (0.9,0.4) -- (1.8,0.25) -- (2.,0.05) -- (2.5,0.05) -- (2.7,-0.15);
+    \filldraw[fill=white, draw=black, thick] (0.8,0.25) -- (1.7,0.1) -- (1.8,-0.15) ;
+    \draw[black, thick] (2.75,-0.15) -- (3.7,0.5) -- (3.15,-0.15) ;
+    \node[above, xshift=1.cm, yshift=0.5cm] {Boat};
+    % Surface
+    \draw[thick, blue] plot[domain=-1:7.5, samples=300]  (\x,{0.05*sin(\x*10 r)-0.32});
+    % Cable
+    \draw[thick, orange] (3.7,0.5) -- (4.8,-2.5) -- (5.5,-1.5) -- (6.2, -2);
+    \filldraw (4.8,-2.5) circle (3pt) node[below, xshift=-0.5cm, align=left] {Sliding mass};
+    \filldraw[fill=white, draw=black, thick] (5.5,-1.5) circle (3pt) node[above, xshift=0.2cm, yshift=0.08cm, align=left] {Sliding buoy};
+    \filldraw[fill=white, thick, draw=black] (6.2, -2) rectangle (6.9, -2.5) node[below, xshift=-0.2cm] {ROV};
+    % LARS
+    \draw[thick, purple, dashed] (2.7, 0.7) rectangle (3.9, -0.2) node[right, yshift=0.5cm] {LARS};
+\end{tikzpicture}

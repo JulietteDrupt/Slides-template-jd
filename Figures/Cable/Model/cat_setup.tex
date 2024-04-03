@@ -1,0 +1,109 @@
+\begin{tikzpicture}[scale=0.75]
+    % \huge
+    \coordinate (O) at (0,0);
+    \def\c{2}
+    \coordinate (P1) at ($(O) + (\c, \c)$);
+    \draw[black, thick] (O) rectangle (P1);
+    \def\leg{1.}
+    \coordinate (foot1) at ($(O) + (0.2*\c, \c)$);
+    \coordinate (foot2) at ($(foot1) + (0.7, 0)$);
+    \coordinate (knee1) at ($(foot1) + (0.1, \leg)$);
+    \coordinate (knee2) at ($(foot2) + (0, \leg)$);
+    \coordinate (hips) at ($(knee1) + (-0.2, \leg)$);
+    \coordinate (shoulders) at ($(hips) + (0.8*\leg, 0.8*\leg)$);
+    \coordinate (elbow) at ($(shoulders) + (0.2, -0.7*\leg)$);
+    \coordinate (hand) at ($(elbow) + (0.5*\leg, -0.5*\leg)$);
+    \coordinate (head) at ($(shoulders) + (0.5, 0.5)$);
+    \filldraw[black, thick] (foot1) circle (0.2cm);
+    \filldraw[black, thick] (foot2) circle (0.2cm);
+    \filldraw[black, thick] (knee1) circle (0.2cm);
+    \filldraw[black, thick] (knee2) circle (0.2cm);
+    \filldraw[black, thick] (hips) circle (0.2cm);
+    \filldraw[black, thick] (shoulders) circle (0.2cm);
+    \filldraw[black, thick] (elbow) circle (0.2cm);
+    \filldraw[black, thick] (hand) circle (0.2cm);
+    \filldraw[black, thick] (head) circle (0.35cm);
+    % Scale 1
+    % \draw[line width=0.4cm] (foot1) -- (knee1);
+    % \draw[line width=0.4cm] (foot2) -- (knee2);
+    % \draw[line width=0.4cm] (knee1) -- (hips);
+    % \draw[line width=0.4cm] (knee2) -- (hips);
+    % \draw[line width=0.6cm] ($(hips) + (0.05,-0.05)$) -- ($(shoulders) + (0.05,-0.05)$);
+    % \draw[line width=0.4cm] (shoulders) -- (elbow);
+    % \draw[line width=0.4cm] (elbow) -- (hand);
+    % Scale 0.75
+    \draw[line width=0.34cm] (foot1) -- (knee1);
+    \draw[line width=0.34cm] (foot2) -- (knee2);
+    \draw[line width=0.34cm] (knee1) -- (hips);
+    \draw[line width=0.34cm] (knee2) -- (hips);
+    \draw[line width=0.44cm] ($(hips) + (0.05,-0.05)$) -- ($(shoulders) + (0.05,-0.05)$);
+    \draw[line width=0.34cm] (shoulders) -- (elbow);
+    \draw[line width=0.34cm] (elbow) -- (hand);
+
+    \def\pool{6}
+    \coordinate (P2) at ($(P1) + (0.2,0.5*\c)$);
+    \coordinate (P3) at ($(P2) + (\pool,0)$);
+    \coordinate (P4) at ($(P3) + (0,-1.5*\c)$);
+    \coordinate (P5) at ($(P4) + (-\pool,0)$);
+    \coordinate (P6) at ($(P4) + (0,1.3*\c)$);
+    \filldraw[blue!20, fill=blue!20] (P5) rectangle (P6);
+    \draw[line width=0.2cm, blue!50] (P2) -- (P5) -- (P4) -- (P3);
+
+    \coordinate (P7) at ($(hand) + (1., -1.5)$);
+    \coordinate (Pstick) at ($(hand) + (0.5, -0.75)$);
+    \draw[line width=0.1cm] (hand) -- (P7);
+
+    \coordinate (P8) at ($(P7) + (0,-0.2)$);
+
+    \def\C{0.25}
+    \def\offsetx{-3}
+    \def\ldomain{5.3}
+    \pgfmathsetmacro\l{\ldomain/5}
+    \draw[smooth, domain=0:\ldomain, samples=100, very thick, orange] plot (\x + 2.8, {cosh((\x + \offsetx)*\C)/\C - 3.1});
+    \foreach \i in {0,...,5}
+    {
+        \pgfmathsetmacro\x{\i*\l}
+        \coordinate (P9) at ($({\x + 2.8}, {cosh((\x + \offsetx)*\C)/\C - 3.1})$);
+        \filldraw[fill=gray, draw=black, thick] (P9) circle (0.1cm);
+    }
+    \coordinate (Pa1) at ($(2.8, {cosh((\offsetx)*\C)/\C - 3.1})$);
+    \coordinate (Pa2) at ($(\ldomain + 2.8, {cosh((\ldomain + \offsetx)*\C)/\C - 3.1})$);
+    \node (p) at (Pa1) [below] {$\mathbf{P}_{a_1}$};
+    \node (p) at (Pa2) [left, yshift=0.15cm] {$\mathbf{P}_{a_2}$};
+    \coordinate (Pcable) at ($(0.5*\l + 2.8, {cosh((0.5*\l + \offsetx)*\C)/\C - 3.1})$);
+    \coordinate (Pmarker) at ($(2*\l + 2.8, {cosh((2*\l + \offsetx)*\C)/\C - 3.1})$);
+
+    \node[regular polygon, draw, regular polygon sides=3, rotate=10, fill=black] (p) at ($(P5) + (0.4,0.4)$) {};
+    \node[regular polygon, draw, regular polygon sides=3, rotate=-10, fill=black] (p) at ($(P4) + (-0.4,0.4)$) {};
+    % \node[regular polygon, draw, regular polygon sides=3, rotate=-30, fill=black] (p) at ($(P6) + (-0.4,-0.4)$) {};
+
+    \def\labelspacing{0.8}
+    \coordinate (L1) at ($(P3) + (1.,0.7)$);
+    \coordinate (L2) at ($(L1) + (0,-\labelspacing)$);
+    \coordinate (L3) at ($(L1) + (0,-\labelspacing)$);
+    \coordinate (L4) at ($(L3) + (0,-\labelspacing)$);
+    \coordinate (L5) at ($(L4) + (0,-\labelspacing)$);
+    \node (l1) at (L1) [right] {Stick};
+    % \node (l2) at (L2) [right] {Cable ends' fixations};
+    \node (l3) at (L3) [right] {Cable};
+    \node (l4) at (L4) [right] {Marker};
+    \node (l5) at (L5) [right, align=left] {Mocap\\camera};
+
+    \path let \p{l1}=(l1.west) in coordinate (l1m) at ({\x{l1} - 6cm}, \y{l1});
+    \draw[latex-, black, thin] (Pstick) -- (l1m) -- (l1.west);
+
+    % \path let \p{l2}=(l2.west) in coordinate (l2m) at ({\x{l2} - 6cm}, \y{l2});
+    % \draw[latex-, black, thick] (Pa1) -- (l2m) -- (l2.west);
+    % \path let \p{l2}=(l2.west) in coordinate (l2mm) at ({\x{l2} - 1cm}, \y{l2});
+    % \draw[latex-, black, thick] (Pa2) -- (l2mm);
+
+    \path let \p{l3}=(l3.west) in coordinate (l3m) at ({\x{l3} - 5cm}, \y{l3});
+    \draw[latex-, black, thin] (Pcable) -- (l3m) -- (l3.west);
+
+    \path let \p{l4}=(l4.west) in coordinate (l4m) at ({\x{l4} - 4cm}, \y{l4});
+    \draw[latex-, black, thin] (Pmarker) -- (l4m) -- (l4.west);
+
+    \path let \p{l5}=(l5.west) in coordinate (l5m) at ({\x{l5} - 1cm}, \y{l5});
+    \draw[latex-, black, thin] ($(P4) + (-0.2,0.4)$) -- (l5m) -- (l5.west);
+
+\end{tikzpicture}

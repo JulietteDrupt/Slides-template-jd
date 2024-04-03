@@ -1,0 +1,38 @@
+\begin{tikzpicture}
+ 
+    \begin{axis}[view = {80}{25}, 
+        xlabel={$x$ [m]},
+        ylabel={$y$ [m]},
+        zlabel={$z$ [m]},
+        xmin=-2.5, xmax=1.5,
+        ymin=-1.5, ymax=2.1,
+        zmin = -1.7, zmax = 1.1,
+        xtick = {-4,-3,...,14},
+        ytick = {-4,-3,...,12},
+        ztick = {-6,-5,...,6},
+        axis equal image,
+        grid,
+        width=1.5\textwidth,
+        legend style={at={(0.5,-0.175)}, anchor=north},
+        unbounded coords=jump
+        ]
+
+    \addplot3[line width=0.5pt,densely dotted,color=blue!50, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/ifremer/a0_ifremer_gt.txt};
+
+    \addplot3[line width=0.5pt,densely dotted,color=orange, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/ifremer/a1_ifremer_gt.txt};
+
+    \addplot3[line width=0.5pt,solid,color=blue, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/ifremer/a0_ifremer_mam_M0.txt};
+    \input{Figures/SLAM/res_mam/data/ifremer/cam_frames_a0.tex}
+
+    \addplot3[line width=0.5pt,solid,color=red, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/ifremer/a1_ifremer_mam_M0.txt};
+    \input{Figures/SLAM/res_mam/data/ifremer/cam_frames_a1.tex}
+
+    % \legend{Agent~0 (ref), Agent~1 (ref), Agent~0 MAM$^3$SLAM --- Map~0, Agent~1 MAM$^3$SLAM --- Map~0}
+     
+    \end{axis}
+     
+\end{tikzpicture}

@@ -1,0 +1,42 @@
+\begin{tikzpicture}
+ 
+    \begin{axis}[view = {45}{15}, 
+        xlabel={$x$ [m]},
+        ylabel={$y$ [m]},
+        zlabel={$z$ [m]},
+        xmin=-1, xmax=1,
+        ymin=-1.2, ymax=1,
+        zmin = -1.2, zmax = 1,
+        xtick = {-4,-3.5,...,14},
+        ytick = {-4,-3.5,...,12},
+        ztick = {-6,-5.5,...,6},
+        axis equal image,
+        grid,
+        width=1.4\textwidth,
+        legend style={at={(0.5,-0.175)}, anchor=north},
+        unbounded coords=jump
+        ]
+
+    \addplot3[line width=0.5pt,densely dotted,color=blue!50, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/cephismer/a0_cephismer_gt.txt};
+
+    \addplot3[line width=0.5pt,densely dotted,color=orange, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/cephismer/a1_cephismer_gt.txt};
+
+    \addplot3[line width=0.5pt,solid,color=blue, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/cephismer/a0_cephismer_mam_M0.txt};
+    \input{Figures/SLAM/res_mam/data/cephismer/cam_frames_a0.tex}
+
+    \addplot3[line width=0.5pt,solid,color=green, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/cephismer/a0_cephismer_mam_M1.txt};
+    \input{Figures/SLAM/res_mam/data/cephismer/cam_frames_a0_map1.tex}
+
+    \addplot3[line width=0.5pt,solid,color=red, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/cephismer/a1_cephismer_mam_M0.txt};
+    \input{Figures/SLAM/res_mam/data/cephismer/cam_frames_a1.tex}
+
+    % \legend{Agent~0 (ref), Agent~1 (ref), Agent~0 MAM$^3$SLAM --- Map~0, Agent~0 MAM$^3$SLAM --- Map~1, Agent~1 MAM$^3$SLAM --- Map~0}
+     
+    \end{axis}
+     
+\end{tikzpicture}

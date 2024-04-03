@@ -1,0 +1,42 @@
+\begin{tikzpicture}
+ 
+    \begin{axis}[view = {40}{25}, 
+        xlabel={$x$ [m]},
+        ylabel={$y$ [m]},
+        zlabel={$z$ [m]},
+        xmin=-2, xmax=8,
+        ymin=-0.5, ymax=7.5,
+        zmin = -3, zmax = 3,
+        xtick = {-4,-2,...,14},
+        ytick = {-4,-2,...,12},
+        ztick = {-6,-4,...,6},
+        axis equal image,
+        grid,
+        width=1.4\textwidth,
+        legend style={at={(0.5,-0.125)}, anchor=north},
+        unbounded coords=jump
+        ]
+
+    \addplot3[line width=0.5pt,densely dotted,color=blue!50, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/euroc/a0_euroc_gt.txt};
+
+    \addplot3[line width=0.5pt,densely dotted,color=orange, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/euroc/a1_euroc_gt.txt};
+
+    \addplot3[line width=0.5pt,solid,color=blue, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/euroc/a0_euroc_mam_M0.txt};
+    \input{Figures/SLAM/res_mam/data/euroc/cam_frames_a0.tex}
+
+    \addplot3[line width=0.5pt,solid,color=red, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/euroc/a1_euroc_mam_M0.txt};
+    \input{Figures/SLAM/res_mam/data/euroc/cam_frames_a1_map1.tex}
+
+    \addplot3[line width=0.5pt,solid,color=green, join=round]
+    table[x=x, y=y, z=z] {Figures/SLAM/res_mam/data/euroc/a1_euroc_mam_M1.txt};
+    \input{Figures/SLAM/res_mam/data/euroc/cam_frames_a1.tex}
+
+    % \legend{Agent~0 (ref), Agent~1 (ref), Agent~0 MAM$^3$SLAM --- Map~0, Agent~1 MAM$^3$SLAM --- Map~0, Agent~1 MAM$^3$SLAM --- Map~1}
+     
+    \end{axis}
+     
+\end{tikzpicture}
