@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1712148179 "main.aux" "main.bbl" "main" 1712148233
+["bibtex main"] 1712148179 "main.aux" "main.bbl" "main" 1716971170
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/ieeetr.bst" 1292289607 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
   "main.aux" 1712148233 2113 284dabe4cef94de05b5cbdf27ed5079a "pdflatex"
   "references.bib" 1712148179 384 e9a07fe213787f0709884a93154ab58d ""
   (generated)
   "main.blg"
   "main.bbl"
-["pdflatex"] 1712148232 "/home/osl/Documents/juliette/Sildes-template-jd/main.tex" "/home/osl/Documents/juliette/Sildes-template-jd/main.pdf" "main" 1712148233
+["pdflatex"] 1712148232 "/home/osl/Documents/juliette/Sildes-template-jd/main.tex" "/home/osl/Documents/juliette/Sildes-template-jd/main.pdf" "main" 1716971170
   "/etc/texmf/web2c/texmf.cnf" 1709404326 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/osl/Documents/juliette/Sildes-template-jd/main.aux" 1712148233 2113 284dabe4cef94de05b5cbdf27ed5079a ""
   "/home/osl/Documents/juliette/Sildes-template-jd/main.tex" 1712148232 4584 3a1c00c20182de569c4c8f0d43ce06a4 ""
@@ -352,13 +352,13 @@
   "main.tex" 1712148232 4584 3a1c00c20182de569c4c8f0d43ce06a4 ""
   "setup.tex" 1712143562 4329 09051b43939022b7ed4f3e59d667e167 ""
   (generated)
-  "main.log"
-  "main.pdf"
-  "/home/osl/Documents/juliette/Sildes-template-jd/main.pdf"
-  "main.out"
-  "main.auxlock"
-  "main.nav"
-  "main.toc"
-  "main.aux"
   "/home/osl/Documents/juliette/Sildes-template-jd/main.log"
+  "/home/osl/Documents/juliette/Sildes-template-jd/main.pdf"
+  "main.log"
+  "main.auxlock"
+  "main.toc"
+  "main.out"
+  "main.nav"
+  "main.aux"
   "main.snm"
+  "main.pdf"

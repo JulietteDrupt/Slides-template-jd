@@ -1,8 +1,0 @@
-cache/main-figure3.pdf: Figures/SLAM/res_mam/data/euroc/a0_euroc_gt.txt
-cache/main-figure3.pdf: Figures/SLAM/res_mam/data/euroc/a1_euroc_gt.txt
-cache/main-figure3.pdf: Figures/SLAM/SLAMM/data/a0_euroc_slamm_M0_noalign.txt
-cache/main-figure3.pdf: Figures/SLAM/SLAMM/data/a1_euroc_slamm_M1_noalign.txt
-cache/main-figure3.pdf: Figures/SLAM/SLAMM/data/a1_euroc_slamm_M2_noalign.txt
-cache/main-figure3.pdf: Figures/SLAM/SLAMM/data/a1_euroc_slamm_M3_noalign.txt
-cache/main-figure3.pdf: Figures/SLAM/SLAMM/data/a1_euroc_slamm_M4_noalign.txt
-cache/main-figure3.pdf: Figures/SLAM/SLAMM/data/a1_euroc_slamm_M5_noalign.txt
